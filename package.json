@@ -4,6 +4,12 @@
   "description": "SPDX license expressions for npm package without proper metadata",
   "repository": "jslicense/npm-license-corrections.json",
   "license": "CC0-1.0",
+  "keywords": [
+    "licenses",
+    "licensing",
+    "metadata",
+    "npm"
+  ],
   "files": [
     "README.MD",
     "LICENSE",
