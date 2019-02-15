@@ -1,4 +1,4 @@
-SPDX license expressions for npm package without proper metadata
+SPDX license expressions for npm packages without proper metadata
 
 # Schema
 
