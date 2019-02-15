@@ -1,5 +1,5 @@
 {
-  "name": "npm-license-corrections.json",
+  "name": "npm-license-corrections",
   "version": "0.0.0",
   "description": "SPDX license expressions for npm package without proper metadata",
   "repository": "jslicense/npm-license-corrections.json",
