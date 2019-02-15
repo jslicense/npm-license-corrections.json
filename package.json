@@ -1,0 +1,16 @@
+{
+  "name": "npm-license-corrections.json",
+  "version": "0.0.0",
+  "description": "SPDX license expressions for npm package without proper metadata",
+  "repository": "jslicense/npm-license-corrections.json",
+  "license": "CC0-1.0",
+  "files": "index.json",
+  "scripts": {
+    "prepublish": "./build"
+  },
+  "devDependencies": {
+    "semver": "^5.6.0",
+    "spdx-expression-validate": "^2.0.0",
+    "validate-npm-package-name": "^3.0.0"
+  }
+}

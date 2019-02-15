@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+var fs = require('fs')
+var semver = require('semver')
+var validateNpmPackageName = require('validate-npm-package-name')
+var spdxExpressionValidate = require('spdx-expression-validate')
+
+var haveError = false
+var csv = fs.readFileSync('index.csv', 'utf8')
+var data = csv
+  .split('\n')
+  .filter(Boolean)
+  .map(function (line) {
+    var split = line
+      .split(',')
+      .map(function (element) {
+        return element.trim()
+      })
+    var object = {
+      name: split[0],
+      version: split[1],
+      license: split[2]
+    }
+    if (!validateNpmPackageName(object.name).validForOldPackages) {
+      haveError = true
+      console.error(object.name + ' is not a valid package name.')
+    }
+    if (!semver.valid(object.version)) {
+      haveError = true
+      console.error(object.version + ' is not a valid version.')
+    }
+    if (!spdxExpressionValidate(object.license)) {
+      haveError = true
+      console.error(object.license + ' is not a valid SPDX expression.')
+    }
+    return object
+  })
+
+if (haveError) process.exit(1)
+
+var json = JSON.stringify(data, null, 2)
+fs.writeFileSync('index.json', json + '\n')
