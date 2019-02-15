@@ -10,7 +10,8 @@
     "index.json"
   ],
   "scripts": {
-    "prepublish": "./build"
+    "prepublish": "./build",
+    "test": "npm run prepublish"
   },
   "devDependencies": {
     "semver": "^5.6.0",
