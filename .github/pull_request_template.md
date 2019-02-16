@@ -1,5 +1,6 @@
 - [ ] Are you the package author?
 - [ ] Downloaded, extracted, and reviewed the contents of the package tarball on the npm public registry.
 - [ ] Checked `README`, `LICENSE`, `COPYING`, and header comments for conflicting or additional licenses.
+- [ ] Searched for "license", such as with `fgrep -ir license $PACKAGE_DIRECTORY`.
 - [ ] Compared the license text found to standard language on <htts://spdx.org/licenses/>.
 - [ ] Asked the package author about the applicable license.
