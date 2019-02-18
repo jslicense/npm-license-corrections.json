@@ -5966,3 +5966,4 @@ doctrine,1.5.0,Apache-2.0
 esutils,2.0.2,BSD-2-Clause
 json-schema,0.2.3,(AFL-2.1 OR BSD-3-Clause)
 wordwrap,0.0.2,MIT
+longest,1.0.1,MIT
