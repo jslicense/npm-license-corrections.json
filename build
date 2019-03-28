@@ -17,17 +17,19 @@ var data = csv
       })
     var object = {
       name: split[0],
-      version: split[1],
-      license: split[2]
+      license: split[1],
+      versions: split.slice(2)
     }
     if (!validateNpmPackageName(object.name).validForOldPackages) {
       haveError = true
       console.error(object.name + ' is not a valid package name.')
     }
-    if (!semver.valid(object.version)) {
-      haveError = true
-      console.error(object.version + ' is not a valid version.')
-    }
+    object.versions.forEach(function (version) {
+      if (!semver.valid(version)) {
+        haveError = true
+        console.error(version + ' is not a valid version.')
+      }
+    })
     if (!spdxExpressionValidate(object.license)) {
       haveError = true
       console.error(object.license + ' is not a valid SPDX expression.')
@@ -37,5 +39,18 @@ var data = csv
 
 if (haveError) process.exit(1)
 
-var json = JSON.stringify(data, null, 2)
+var json = JSON.stringify(
+  data.reduce(function (data, object) {
+    return data.concat(
+      object.versions.map(function (version) {
+        return {
+          name: object.name,
+          version,
+          license: object.license
+        }
+      })
+    )
+  }, []),
+  null, 2
+)
 fs.writeFileSync('index.json', json + '\n')
