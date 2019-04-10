@@ -17,10 +17,14 @@
   ],
   "scripts": {
     "prepublish": "./build",
+    "survey": "./build && ./survey > survey.log",
     "test": "npm run prepublish"
   },
   "devDependencies": {
+    "correct-license-metadata": "^1.4.0",
+    "run-series": "^1.1.8",
     "semver": "^5.7.0",
+    "spdx-expression-parse": "^3.0.0",
     "spdx-expression-validate": "^2.0.0",
     "validate-npm-package-name": "^3.0.0"
   }

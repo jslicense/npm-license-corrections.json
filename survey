@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+var https = require('https')
+var popular = require('./popular.json')
+var runSeries = require('run-series')
+
+var parseExpression = require('spdx-expression-parse')
+var correctLicenseMetadata = require('correct-license-metadata')
+var corrections = require('./')
+
+// Iterate popular package names.
+runSeries(popular.map(function (packageName, index) {
+  return function (done) {
+    if (index % 100 === 0) console.error(index)
+    // Download metadata from the npm public registry.
+    var endpoint = 'https://registry.npmjs.org/' + packageName
+    https.get(endpoint, function (response) {
+      if (response.statusCode !== 200) {
+        return done(new Error('responded ' + response.statusCode))
+      }
+      var chunks = []
+      response
+        .on('data', function (chunk) {
+          chunks.push(chunk)
+        })
+        .once('error', function (error) {
+          return done(error)
+        })
+        .once('end', function () {
+          var body = Buffer.concat(chunks)
+          var parsed
+          try {
+            parsed = JSON.parse(body)
+          } catch (error) {
+            return done(error)
+          }
+          // Iterate versions.
+          var versions = parsed.versions
+          Object.keys(versions).forEach(function (versionNumber) {
+            var data = versions[versionNumber]
+            var license = correctLicenseMetadata(data)
+            // Validate license metadata.
+            var valid
+            try {
+              parseExpression(license)
+              valid = true
+            } catch (error) {
+              valid = false
+            }
+            if (valid) return finish()
+            // Check if we have already made a correction.
+            var corrected = corrections.some(function (correction) {
+              return (
+                correction.name === packageName &&
+                correction.version === versionNumber
+              )
+            })
+            if (corrected) return finish()
+            console.log(
+              [
+                packageName,
+                versionNumber,
+                license
+              ].join('\t')
+            )
+            return finish()
+          })
+        })
+    })
+
+    function finish () {
+      setTimeout(done, 100)
+    }
+  }
+}))
