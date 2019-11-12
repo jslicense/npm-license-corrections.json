@@ -1,6 +1,6 @@
 SPDX license expressions for npm packages without proper metadata
 
-[licensee](https://www.npmjs.com/package/licensee) uses this package, along with [correct-license-metadata](https://www.npmjs.com/package/correct-license-metdata), to find valid license expressions for npm packages without them.
+[licensee](https://www.npmjs.com/package/licensee) uses this package, along with [correct-license-metadata](https://www.npmjs.com/package/correct-license-metadata), to find valid license expressions for npm packages without them.
 
 # Schema
 
