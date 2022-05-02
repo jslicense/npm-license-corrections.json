@@ -22,6 +22,6 @@
   "devDependencies": {
     "semver": "^7.3.7",
     "spdx-expression-validate": "^2.0.0",
-    "validate-npm-package-name": "^3.0.0"
+    "validate-npm-package-name": "^4.0.0"
   }
 }
