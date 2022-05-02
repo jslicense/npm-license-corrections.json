@@ -1,6 +1,6 @@
 {
   "name": "npm-license-corrections",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "SPDX license expressions for npm packages without proper metadata",
   "repository": "jslicense/npm-license-corrections.json",
   "license": "CC0-1.0",
