@@ -1,3 +1,8 @@
 index.json
 
 node_modules
+
+# Only apps should have lockfiles
+npm-shrinkwrap.json
+package-lock.json
+yarn.lock
