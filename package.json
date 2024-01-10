@@ -20,8 +20,8 @@
     "test": "npm run prepublish"
   },
   "devDependencies": {
-    "semver": "^7.3.7",
+    "semver": "^7.5.4",
     "spdx-expression-validate": "^2.0.0",
-    "validate-npm-package-name": "^4.0.0"
+    "validate-npm-package-name": "^5.0.0"
   }
 }
