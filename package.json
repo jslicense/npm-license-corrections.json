@@ -16,7 +16,7 @@
     "index.json"
   ],
   "scripts": {
-    "prepublish": "./build",
+    "prepare": "./build",
     "test": "npm run prepublish"
   },
   "devDependencies": {
